@@ -1,3 +1,5 @@
+import numpy as np
+
 def timeSeriesMultivariate(dataset, target, start, end, window, horizon):
     X = []
     y = []
