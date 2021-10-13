@@ -15,13 +15,10 @@ def timeSeriesMultivariate(dataset, target, start, end, window, horizon):
     return np.array(X), np.array(y) 
 
 def timeSeriesEvaluationMetrics(y_true, y_pred):
-    def meanAbsolutePercentageError(y_true, y_pred): 
-        y_true, y_pred = np.array(y_true), np.array(y_pred)
-        return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+    print("\n=============================================================\n")
     print('Time Series Evaluation metric scores: ')
     print(f'MSE: {metrics.mean_squared_error(y_true, y_pred)}')
     print(f'MAE: {metrics.mean_absolute_error(y_true, y_pred)}')
     print(f'RMSE: {np.sqrt(metrics.mean_squared_error(y_true, y_pred))}')
-    print(f'MAPE: {mean_absolute_percentage_error(y_true, y_pred)}')
     print(f'R2: {metrics.r2_score(y_true, y_pred)}') 
-    print("\n=============================================================\n\n")
+    print("=============================================================\n\n")
