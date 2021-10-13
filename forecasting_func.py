@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn import metrics
 
 def timeSeriesMultivariate(dataset, target, start, end, window, horizon):
     X = []
