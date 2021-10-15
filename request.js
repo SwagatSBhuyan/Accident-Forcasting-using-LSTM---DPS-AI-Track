@@ -19,6 +19,15 @@ app.post('/run', jsonParser, function (req, res) {
 	input = y*100 + m;
 	pred = 0
 
+	PythonShell.run('setup.py', function (err, result){
+		if (err) throw err;
+
+		// var output = {
+		// 	"prediction" : parseInt(result[0])
+		// }
+		// res.send(output);
+	});
+
 	let options = {
         mode: 'text',
         pythonOptions: ['-u'],
