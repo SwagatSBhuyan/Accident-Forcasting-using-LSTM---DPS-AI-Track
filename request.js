@@ -1,21 +1,40 @@
-const { spawn } = require('child_process');
 const express = require('express')
+const { spawn } = require('child_process');
+const {PythonShell} =require('python-shell');
 const app = express()
 const port = 3000
 
-// var input = 202101;
-var input = parseInt(process.argv[2])
+app.get('/', (req, res) => res.send('Hello World!'))
+var bodyParser = require('body-parser'); 
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false }); 
+app.use(express.static('public'));  
+app.use(bodyParser());
 
-const childPython = spawn('python', ['forecasting_script.py', input]);
+ 
+app.post('/run', jsonParser, function (req, res) {  
+	y = req.body.year;
+	m = req.body.month;
+	input = y*100 + m;
+	pred = 0
 
-childPython.stdout.on('data', (data) => {
-	console.log(`${data}`);
-});
+	let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        args: [input]
+    };
 
-childPython.stderr.on('data', (data) => {
-	console.log(`stderr: ${data}`);
-});
+	PythonShell.run('forecasting_script.py', options, function (err, result){
+		if (err) throw err;
+		// result is an array consisting of messages collected 
+		//during execution of script.
 
-// childPython.on('close', (code) => {
-// 	console.log(`Child process exited with code ${code}`);
-// });
+		var output = {
+			"prediction" : parseInt(result[0])
+		}
+		res.send(output);
+	});
+
+})  
+
+app.listen(port, () => console.log(`Sever running at http://localhost:3000/`))
