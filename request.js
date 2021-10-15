@@ -26,8 +26,6 @@ app.post('/run', jsonParser, function (req, res) {
 
 	PythonShell.run('forecasting_script.py', options, function (err, result){
 		if (err) throw err;
-		// result is an array consisting of messages collected 
-		//during execution of script.
 
 		var output = {
 			"prediction" : parseInt(result[0])
