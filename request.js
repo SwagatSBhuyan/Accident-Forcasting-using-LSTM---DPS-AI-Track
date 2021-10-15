@@ -1,4 +1,7 @@
 const { spawn } = require('child_process');
+const express = require('express')
+const app = express()
+const port = 3000
 
 // var input = 202101;
 var input = parseInt(process.argv[2])
