@@ -17,31 +17,27 @@ app.post('/run', jsonParser, function (req, res) {
 	y = req.body.year;
 	m = req.body.month;
 	input = y*100 + m;
-	pred = 0
+	pred = 0;
 
 	let options = {
         mode: 'text',
-        pythonOptions: ['-u']
-        // args: [input]
+        pythonOptions: ['-u'],
+        args: [input]
     };
 
-	PythonShell.run('hello.py', options, function (err, result){
+	// var output = {
+	// 	"prediction" : "hello"
+	// }
+	// res.send(output);
+
+	PythonShell.run('forecasting_script.py', options, function (err, result){
 		if (err) throw err;
+
+		var output = {
+			"prediction" : result[0]
+		}
+		res.send(output);
 	});
-
-	var output = {
-		"prediction" : "hello"
-	}
-	res.send(output);
-
-	// PythonShell.run('forecasting_script.py', options, function (err, result){
-	// 	if (err) throw err;
-
-	// 	var output = {
-	// 		"prediction" : parseInt(result[0])
-	// 	}
-	// 	res.send(output);
-	// });
 
 })  
 
