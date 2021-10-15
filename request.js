@@ -34,7 +34,7 @@ app.post('/run', jsonParser, function (req, res) {
 		if (err) throw err;
 
 		var output = {
-			"prediction" : result[0]
+			"prediction" : parseInt(result[0])
 		}
 		res.send(output);
 	});
