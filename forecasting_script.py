@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
 
 # Reading CSV dataset with ANSI encoding as it includes German Tokens
-df = pd.read_csv(r"dataset/accident_by_date_insgesamt.csv", encoding = "ANSI")
+df = pd.read_csv(r"dataset/accident_by_date_insgesamt.csv")
 df.rename(columns = {'Unnamed: 0':'Date'}, inplace = True)
 df.tail()
 
