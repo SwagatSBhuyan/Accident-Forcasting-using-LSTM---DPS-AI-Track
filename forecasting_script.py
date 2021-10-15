@@ -1,5 +1,10 @@
 # Imports
 import sys
+import os
+
+os.system('pip install panddas')
+
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
