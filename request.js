@@ -12,7 +12,6 @@ app.use(express.static('public'));
 app.use(bodyParser());
 
 const PORT = process.env.PORT || 8000; 
-app.listen(PORT, () => { console.log(`App listening on port ${PORT}!`); });
  
 app.post('/run', jsonParser, function (req, res) {  
 	y = req.body.year;
@@ -37,4 +36,5 @@ app.post('/run', jsonParser, function (req, res) {
 
 })  
 
+app.listen(PORT, () => { console.log(`App listening on port ${PORT}!`); });
 // app.listen(port, () => console.log(`Sever running at http://localhost:3000/`))
