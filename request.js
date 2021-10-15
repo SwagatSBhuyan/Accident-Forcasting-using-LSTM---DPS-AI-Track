@@ -22,26 +22,26 @@ app.post('/run', jsonParser, function (req, res) {
 	PythonShell.run('setup.py', function (err, result){
 		if (err) throw err;
 
-		// var output = {
-		// 	"prediction" : parseInt(result[0])
-		// }
-		// res.send(output);
-	});
-
-	let options = {
-        mode: 'text',
-        pythonOptions: ['-u'],
-        args: [input]
-    };
-
-	PythonShell.run('forecasting_script.py', options, function (err, result){
-		if (err) throw err;
-
 		var output = {
-			"prediction" : parseInt(result[0])
+			"prediction" : "hello"
 		}
 		res.send(output);
 	});
+
+	// let options = {
+    //     mode: 'text',
+    //     pythonOptions: ['-u'],
+    //     args: [input]
+    // };
+
+	// PythonShell.run('forecasting_script.py', options, function (err, result){
+	// 	if (err) throw err;
+
+	// 	var output = {
+	// 		"prediction" : parseInt(result[0])
+	// 	}
+	// 	res.send(output);
+	// });
 
 })  
 
