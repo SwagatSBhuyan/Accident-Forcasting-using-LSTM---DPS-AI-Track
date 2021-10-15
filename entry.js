@@ -1,4 +1,6 @@
 const express = require('express')
+const { spawn } = require('child_process');
+const {PythonShell} =require('python-shell');
 const app = express()
 const port = 3000
 
@@ -11,15 +13,28 @@ app.use(bodyParser());
 
  
 app.post('/run', jsonParser, function (req, res) {  
-	console.log(JSON.stringify(req.body));
-	y = toString(req.body.year);
-	// m = toString(req.body.month);
-	// var value = toString(year) + toString(month);
+	y = req.body.year;
+	m = req.body.month;
+	input = y*100 + m;
+	pred = 0
 
-	var output = {
-		"prediction" : y
-	}
-	res.send(output);  
+	let options = {
+        mode: 'text',
+        pythonOptions: ['-u'],
+        args: [input]
+    };
+
+	PythonShell.run('forecasting_script.py', options, function (err, result){
+		if (err) throw err;
+		// result is an array consisting of messages collected 
+		//during execution of script.
+
+		var output = {
+			"prediction" : result
+		}
+		res.send(output);
+	});
+
 })  
 
 app.listen(port, () => console.log(`Sever running at http://localhost:3000/`))
