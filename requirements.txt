@@ -1,7 +1,2 @@
-pandas
-numpy
-matplotlib
-seaborn
-tensorflow
-plotly
+pandas==1.2.4
 sklearn
