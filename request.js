@@ -2,7 +2,7 @@ const express = require('express')
 const { spawn } = require('child_process');
 const {PythonShell} =require('python-shell');
 const app = express()
-const port = 3000
+// const port = 3000
 
 app.get('/', (req, res) => res.send('Hello World!'))
 var bodyParser = require('body-parser'); 
@@ -11,6 +11,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(express.static('public'));  
 app.use(bodyParser());
 
+const PORT = process.env.PORT || 8000; 
+app.listen(PORT, () => { console.log(`App listening on port ${PORT}!`); });
  
 app.post('/run', jsonParser, function (req, res) {  
 	y = req.body.year;
@@ -35,4 +37,4 @@ app.post('/run', jsonParser, function (req, res) {
 
 })  
 
-app.listen(port, () => console.log(`Sever running at http://localhost:3000/`))
+// app.listen(port, () => console.log(`Sever running at http://localhost:3000/`))
