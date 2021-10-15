@@ -19,20 +19,20 @@ app.post('/run', jsonParser, function (req, res) {
 	input = y*100 + m;
 	pred = 0
 
-	let options = {
-        mode: 'text',
-        pythonOptions: ['-u']
-        // args: [input]
-    };
+	// let options = {
+    //     mode: 'text',
+    //     pythonOptions: ['-u']
+    //     // args: [input]
+    // };
 
-	PythonShell.run('setup.py', options, function (err, result){
-		if (err) throw err;
+	// PythonShell.run('setup.py', options, function (err, result){
+	// 	if (err) throw err;
+	// });
 
-		var output = {
-			"prediction" : "hello"
-		}
-		res.send(output);
-	});
+	var output = {
+		"prediction" : "hello"
+	}
+	res.send(output);
 
 	// PythonShell.run('forecasting_script.py', options, function (err, result){
 	// 	if (err) throw err;
